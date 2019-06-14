@@ -1,6 +1,14 @@
 <template>
   <div class="facts">
-    <Fact v-for="catFact in catFacts" v-bind:fact="catFact.text" v-bind:key="catFact._id" v-bind:factId="catFact._id" />
+    <v-progress-circular
+      v-if="catFacts.length === 0"
+      indeterminate
+      color="#A40E4C" 
+      class="progress"
+      :size="70"
+      :width="7"
+    ></v-progress-circular>
+    <Fact v-else v-for="catFact in catFacts" v-bind:fact="catFact.text" v-bind:key="catFact._id" v-bind:factId="catFact._id" />
   </div>
 </template>
 
@@ -37,6 +45,10 @@ export default {
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: stretch;
+  }
+  .progress {
+    align-self: center;
+
   }
 </style>
 

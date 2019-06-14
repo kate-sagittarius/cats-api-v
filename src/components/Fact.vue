@@ -5,7 +5,7 @@
     color="#E5E5E5"
   >
     <v-card-title>
-      <div class="card__fact">{{ fact }}</div>
+      <div class="card__fact">{{ fact | shorten }}</div>
     </v-card-title>
 
     <v-card-actions class="card__button-wrapper">
@@ -18,8 +18,29 @@
 </template>
 
 <script>
+
 export default {
-  props: ['fact', 'factId']
+
+  props: ['fact', 'factId'],
+
+  filters: {
+    shorten: (fact) => {
+  
+      if (fact.length < 200) {
+        return fact;
+      } else {
+        const factWords = fact.split(' ');
+
+        let wordsLengthSum = 0;
+        for (let i = 0; wordsLengthSum < 176 && i < factWords.length; i++) {
+          wordsLengthSum += factWords[i].length + 1;
+        }
+
+        return `${fact.slice(0, wordsLengthSum - 1)}…`;
+      }
+    }
+  }
+
 }
 </script>
 

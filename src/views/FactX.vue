@@ -3,7 +3,7 @@
     <v-card
       class="card"
     >
-      <v-img v-bind:src="catImg">
+      <v-img v-bind:src="catImg" class="fact__img">
         <v-layout
           align-end
           fill-height
@@ -14,7 +14,13 @@
         </v-layout>
       </v-img>
       <v-card-title>
-        <div class="text-truncate">Blah</div>
+        <v-progress-circular
+          v-if="catFact === null"
+          indeterminate
+          color="#FCA311" 
+          class="progress"
+        ></v-progress-circular>
+        <div v-else>{{ catFact }}</div>
       </v-card-title>
       <v-card-actions class="card__button-wrapper">
         <v-spacer></v-spacer>
@@ -74,5 +80,11 @@ export default {
   }
   .card__button-wrapper {
     padding-right: 16px;
+  }
+  .fact__img {
+    max-height: 300;
+  }
+  .progress {
+    margin: 10px auto;
   }
 </style>
