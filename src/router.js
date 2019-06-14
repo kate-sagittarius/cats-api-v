@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Home from '@/views/Home';
 import Facts from '@/views/Facts';
 import FactX from '@/views/FactX';
+import NotFound from '@/views/NotFound';
 
 Vue.use(Router);
 
@@ -25,6 +26,12 @@ export default new Router({
       path: '/facts/:id',
       name: 'FactX',
       component: FactX
+    }
+    ,
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })
